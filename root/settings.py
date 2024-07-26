@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-(f1$$ov@e27ug%*v1w^8rf5jm#ba8zf)=iu0+%!-x$0cev^0(c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.apps.AppsConfig',
 
+
     'allauth',
     'allauth.account',
 
@@ -44,9 +45,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     # ... include the providers you want to enable:
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.telegram',
     'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.instagram',
 ]
 
 MIDDLEWARE = [
@@ -57,8 +58,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
     'allauth.account.middleware.AccountMiddleware',
+
 ]
 
 ROOT_URLCONF = 'root.urls'
@@ -182,15 +183,6 @@ SOCIALACCOUNT_PROVIDERS = {
         ],
     },
 
-    # Telegram
-    'telegram': {
-        'APP': {
-            'client_id': 653785729,
-            'secret': '6537857296:AAFKwjUQSsa4dWv0YFP7Z1S8Gy7BIakpWoo',
-        },
-        'AUTH_PARAMS': {'auth_date_validity': 30},
-    },
-
     # LinkedIn
     "openid_connect": {
         "APPS": [
@@ -207,4 +199,15 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-# http://127.0.0.1:8000/accounts/google/login/callback/
+CORS_ALLOWED_ORIGINS = [
+    "https://0724-178-218-201-17.ngrok-free.app",
+    "https://localhost:8000",
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://api.telegram.org",
+    "https://3277-178-218-201-17.ngrok-free.app/"
+]
